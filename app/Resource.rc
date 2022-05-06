@@ -53,7 +53,7 @@ FONT 8, "MS Sans Serif"
 BEGIN
     ICON            IDI_APPICON,IDC_STATIC,7,7,20,20
     LTEXT           "Old'aVista Instant Messenger",IDC_STATIC,34,7,91,8
-    LTEXT           "\2512020 Yeo Kheng Meng",IDC_STATIC,34,17,86,8
+    LTEXT           "\2512022 The Eric Experiment",IDC_STATIC,34,17,86,8
     DEFPUSHBUTTON   "OK",IDOK,90,46,50,14,WS_GROUP
 END
 

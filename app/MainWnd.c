@@ -22,6 +22,7 @@
 #define REFRESH_TIMER_ID 6
 #define CHAT_ROOMS_BOX_ID 5
 #define NICKNAME_TEXT_FIELD_ID 8
+#define STATUS_BAR_ID 9
 
 #define MAX_NICKNAME_BOX 50
 #define MAX_NICKNAME_TO_SEND MAX_NICKNAME_BOX * 3
@@ -35,6 +36,7 @@ HWND joinButton;
 HWND chatRoomsBox;
 
 RECT statusRect;
+RECT nicknameLabel;
 
 int refreshRate = 1000;
 char ip[IP_MAX];
@@ -148,8 +150,9 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
   HDC hdc;
   PAINTSTRUCT ps;
-
-  char settingsText[80];
+  RECT windowRect;
+  int windowWidth;
+  int windowHeight;
 
   switch (msg)
   {
@@ -161,13 +164,17 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
     hbrush = CreateSolidBrush(RGB(255, 255, 255));
 
     return 0;
+  case WM_SIZE:
+    GetWindowRect(hwnd, &windowRect);
+    windowWidth = windowRect.right - windowRect.left - 40;
+    windowHeight = windowRect.bottom - windowRect.top - 150;
+    SetWindowPos(chatRoomsBox, 0, 20, 20, windowWidth, windowHeight, SWP_FRAMECHANGED);
   case WM_PAINT:
     hdc = BeginPaint(hwnd, &ps);
-    sprintf(settingsText, "Proxy %s:%d, Refresh %dms, Get %d msgs", ip, port, refreshRate, maxMessagesToParse);
 
     SetRect(&statusRect, 20, 357, 430, 374);
-    FillRect(hdc, &statusRect, hbrush);
-    DrawText(hdc, settingsText, strlen(settingsText), &statusRect, DT_LEFT | DT_NOCLIP);
+    FillRect(hdc, &statusRect, COLOR_WINDOW);
+    DrawText(hdc, "Nickname:", 9, &statusRect, DT_LEFT | DT_NOCLIP);
 
     SetRect(&statusRect, 20, 380, 430, 397);
     FillRect(hdc, &statusRect, hbrush);
@@ -284,8 +291,8 @@ BOOL RegisterMainWindowClass()
 /* Create an instance of our main window */
 HWND CreateMainWindow()
 {
-  /* Create instance of main window WS_OVERLAPPEDWINDOW & ~WS_MAXIMIZEBOX*/
-  hwnd = CreateWindowEx(0, MainWndClass, MainWndClass, WS_OVERLAPPED, CW_USEDEFAULT, CW_USEDEFAULT, 360, 360,
+  /* Create instance of main window */
+  hwnd = CreateWindowEx(0, MainWndClass, MainWndClass, WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX, CW_USEDEFAULT, CW_USEDEFAULT, 360, 360,
                         NULL, NULL, g_hInstance, NULL);
 
   if (hwnd)
