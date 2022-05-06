@@ -4,6 +4,7 @@
 //
 #define IDI_APPICON                     100
 #define IDR_MAINMENU                    101
+#define IDR_CHATMENU                    101
 #define IDR_ACCELERATOR                 102
 #define IDD_ABOUTDIALOG                 103
 #define ID_FILE_EXIT                    200

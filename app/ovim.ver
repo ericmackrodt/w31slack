@@ -18,13 +18,13 @@ BEGIN
   BEGIN
     BLOCK "080904E4"
     BEGIN
-      VALUE "CompanyName", "Yeo Kheng Meng\0"
-      VALUE "FileDescription", "Slack for Windows 3.1\0"
+      VALUE "CompanyName", "The Eric Experiment\0"
+      VALUE "FileDescription", "Old'aVista Instant Messenger\0"
       VALUE "FileVersion", "1.0.0.0\0"
-      VALUE "InternalName", "W31Slack\0"
-      VALUE "LegalCopyright", "�2020 Yeo Kheng Meng\0"
-      VALUE "OriginalFilename", "w31slack.exe\0"
-      VALUE "ProductName", "Slack for Windows 3.1\0"
+      VALUE "InternalName", "OldavistaIM\0"
+      VALUE "LegalCopyright", "�2022 The Eric Experiment\0"
+      VALUE "OriginalFilename", "ovim.exe\0"
+      VALUE "ProductName", "Old'aVista Instant Messenger\0"
       VALUE "ProductVersion", "1.0.0.0\0"
     END
   END

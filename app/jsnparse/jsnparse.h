@@ -2,49 +2,65 @@
 #define JSNPARSE_H
 #include "windows.h"
 
-typedef struct 
+typedef struct
 {
-    char * channelName;
-    char * channelID;
+    char *id;
+    char *name;
+    char *description;
+    char *color;
+    char *online;
+} ChatRoom;
+
+typedef struct
+{
+    ChatRoom *rooms;
+    int numRooms;
+} ChatRoomList;
+
+typedef struct
+{
+    char *channelName;
+    char *channelID;
 } Channel;
 
-typedef struct 
+typedef struct
 {
-    Channel * channels;
+    Channel *channels;
     int numChannels;
 } ChannelList;
 
-typedef struct 
+typedef struct
 {
-    char * message;
-    char * userID;
+    char *message;
+    char *userID;
 } Message;
 
-typedef struct 
+typedef struct
 {
-    Message * messages;
+    Message *messages;
     int numMessages;
 } MessageList;
 
-typedef struct 
+typedef struct
 {
-    char * username;
-    char * userID;
+    char *username;
+    char *userID;
 } User;
 
-typedef struct 
+typedef struct
 {
-    User * users;
+    User *users;
     int numUsers;
 } UserList;
 
+void jsnparse_parseChatRoomList(LPSTR response, DWORD length, ChatRoomList *list);
+void jsnparse_parseChannelList(LPSTR response, DWORD length, ChannelList *list);
+void jsnparse_parseMessageList(LPSTR response, DWORD length, MessageList *list, int maxMessagesToParse);
+void jsnparse_parseUserList(LPSTR response, DWORD length, UserList *list);
 
-void jsnparse_parseChannelList(LPSTR response, DWORD length, ChannelList * list);
-void jsnparse_parseMessageList(LPSTR response, DWORD length, MessageList * list, int maxMessagesToParse);
-void jsnparse_parseUserList(LPSTR response, DWORD length, UserList * list);
-
-void jsnparse_freeChannelList(ChannelList * list);
-void jsnparse_freeMessagesList(MessageList * list);
-void jsnparse_freeUserList(UserList * list);
+void jsnparse_freeChatRoomList(ChatRoomList *list);
+void jsnparse_freeChannelList(ChannelList *list);
+void jsnparse_freeMessagesList(MessageList *list);
+void jsnparse_freeUserList(UserList *list);
 
 #endif

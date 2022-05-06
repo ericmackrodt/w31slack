@@ -1,5 +1,5 @@
-NAME           W31Slack
-DESCRIPTION    'Slack for Windows 3.1'
+NAME           OldavistaIM
+DESCRIPTION    'Old`aVista Instant Messenger'
 EXETYPE        WINDOWS 3.00
 REALMODE
 STUB           'WINSTUB.EXE'

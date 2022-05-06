@@ -52,7 +52,7 @@ CAPTION "About"
 FONT 8, "MS Sans Serif"
 BEGIN
     ICON            IDI_APPICON,IDC_STATIC,7,7,20,20
-    LTEXT           "Slack for Windows 3.1",IDC_STATIC,34,7,91,8
+    LTEXT           "Old'aVista Instant Messenger",IDC_STATIC,34,7,91,8
     LTEXT           "\2512020 Yeo Kheng Meng",IDC_STATIC,34,17,86,8
     DEFPUSHBUTTON   "OK",IDOK,90,46,50,14,WS_GROUP
 END
@@ -90,7 +90,7 @@ END
 
 3 TEXTINCLUDE DISCARDABLE 
 BEGIN
-    "#include ""w31slack.ver""\r\n"
+    "#include ""ovim.ver""\r\n"
     "\0"
 END
 
@@ -103,7 +103,7 @@ END
 //
 // Generated from the TEXTINCLUDE 3 resource.
 //
-#include "w31slack.ver"
+#include "ovim.ver"
 
 /////////////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED

@@ -1,6 +1,6 @@
 # Microsoft Visual C++ generated build script - Do not modify
 
-PROJ = W31SLACK
+PROJ = OVIM
 DEBUG = 0
 PROGTYPE = 0
 CALLER = 
@@ -10,7 +10,7 @@ D_RCDEFINES = /d_DEBUG
 R_RCDEFINES = /dNDEBUG 
 ORIGIN = MSVC
 ORIGIN_VER = 1.00
-PROJPATH = Z:\APP\
+PROJPATH = Y:\W31SLACK\APP\
 USEMFC = 0
 CC = cl
 CPP = cl
@@ -22,7 +22,7 @@ CPPUSEPCHFLAG =
 FIRSTC = ABOUTDLG.C  
 FIRSTCPP =             
 RC = rc
-CFLAGS_D_WEXE = /nologo /W3 /Gf /Zi /Od /D "WINVER"="0x0300" /D "_DEBUG" /FR /GA /GEs /GEm /Fd"w31slack.PDB"
+CFLAGS_D_WEXE = /nologo /W3 /Gf /Zi /Od /D "WINVER"="0x0300" /D "_DEBUG" /FR /GA /GEs /GEm /Fd"ovim.PDB"
 CFLAGS_R_WEXE = /nologo /W3 /Gf /O1 /D "WINVER"="0x0300" /D "NDEBUG" /FR /GA /GEs /GEm
 LFLAGS_D_WEXE = /NOLOGO /NOD /PACKC:61440 /ALIGN:16 /ONERROR:NOEXE /CO  
 LFLAGS_R_WEXE = /NOLOGO /NOD /PACKC:61440 /ALIGN:16 /ONERROR:NOEXE  
@@ -31,7 +31,7 @@ LIBS_R_WEXE = oldnames libw slibcew winsock commdlg.lib olecli.lib olesvr.lib sh
 RCFLAGS = /nologo 
 RESFLAGS = /nologo /30 
 RUNFLAGS = 
-DEFFILE = W31SLACK.DEF
+DEFFILE = OVIM.DEF
 OBJS_EXT = 
 LIBS_EXT = 
 !if "$(DEBUG)" == "1"
@@ -57,21 +57,36 @@ SBRS = ABOUTDLG.SBR \
 		JSNPARSE.SBR
 
 
-ABOUTDLG_DEP = z:\app\aboutdlg.h \
-	z:\app\globals.h
+ABOUTDLG_DEP = y:\w31slack\app\aboutdlg.h \
+	y:\w31slack\app\globals.h
 
 
-MAINWND_DEP = z:\app\aboutdlg.h \
-	z:\app\globals.h \
-	z:\app\mainwnd.h
+MAINWND_DEP = y:\w31slack\app\aboutdlg.h \
+	y:\w31slack\app\globals.h \
+	y:\w31slack\app\mainwnd.h \
+	y:\w31slack\app\restapi/restapi.h \
+	y:\w31slack\app\jsnparse/jsnparse.h \
+	y:\w31slack\app\escapes.h
+
+RESOURCE_RCDEP = y:\w31slack\app\app.ico \
+	y:\w31slack\app\ovim.ver
 
 
-RESOURCE_RCDEP = z:\app\app.ico \
-	z:\app\w31slack.ver
+WINMAIN_DEP = y:\w31slack\app\globals.h \
+	y:\w31slack\app\mainwnd.h
 
 
-WINMAIN_DEP = z:\app\globals.h \
-	z:\app\mainwnd.h
+NETWORK_DEP = y:\w31slack\app\network\network.h \
+	c:\msvc\include\winsock.h \
+	y:\w31slack\app\smprintf.h
+
+
+RESTAPI_DEP = y:\w31slack\app\restapi\restapi.h \
+	y:\w31slack\app\network/network.h
+
+
+JSNPARSE_DEP = y:\w31slack\app\jsnparse\jsnparse.h \
+	y:\w31slack\app\jsnparse\jsmn.h
 
 
 all:	$(PROJ).EXE $(PROJ).BSC

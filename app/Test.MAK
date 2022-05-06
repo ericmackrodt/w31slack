@@ -31,7 +31,7 @@ LIBS_R_WEXE = oldnames libw slibcew winsock commdlg.lib olecli.lib olesvr.lib sh
 RCFLAGS = /nologo 
 RESFLAGS = /nologo /30 
 RUNFLAGS = 
-DEFFILE = W31SLACK.DEF
+DEFFILE = OVIM.DEF
 OBJS_EXT = 
 LIBS_EXT = 
 !if "$(DEBUG)" == "1"
@@ -52,7 +52,7 @@ RCDEFINES = $(R_RCDEFINES)
 SBRS = TestMain.SBR
 
 RESOURCE_RCDEP = z:\app\app.ico \
-	z:\app\w31slack.ver
+	z:\app\ovim.ver
 
 
 TestMain_DEP = z:\app\globals.h \
