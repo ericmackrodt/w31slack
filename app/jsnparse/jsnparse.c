@@ -254,33 +254,31 @@ void jsnparse_parseChatRoomList(LPSTR response, DWORD length, ChatRoomList *list
 
     LPSTR startOfNextSubstring;
     char *tokenString;
-    jsmntok_t tokens[4];
+    jsmntok_t tokens[8];
 
     jsnparse_getStartOfJson(response, length, &startOfJson, &lengthOfJson);
 
     startOfNextSubstring = startOfJson;
     list->numRooms = 0;
 
-    while ((startOfNextSubstring = jsnparse_extractThisTokenAndNextFew(startOfNextSubstring, lengthOfJson - (startOfNextSubstring - startOfJson), "\"id\":", tokens, 4)) != NULL)
+    while ((startOfNextSubstring = jsnparse_extractThisTokenAndNextFew(startOfNextSubstring, lengthOfJson - (startOfNextSubstring - startOfJson), "\"id\":", tokens, 8)) != NULL)
     {
-
         if (startOfNextSubstring == NULL)
         {
             break;
         }
 
-        tokenString = jsnparse_extractStringOfThisToken(startOfNextSubstring, &tokens[2]);
+        tokenString = jsnparse_extractStringOfThisToken(startOfNextSubstring, &tokens[0]);
 
-        if (strcmp("title", tokenString) == 0)
+        if (strcmp("id", tokenString) == 0)
         {
 
             list->rooms = (ChatRoom *)realloc(list->rooms, (list->numRooms + 1) * sizeof(ChatRoom));
 
             list->rooms[list->numRooms].id = jsnparse_extractStringOfThisToken(startOfNextSubstring, &tokens[1]);
             list->rooms[list->numRooms].name = jsnparse_extractStringOfThisToken(startOfNextSubstring, &tokens[3]);
-            list->rooms[list->numRooms].description = jsnparse_extractStringOfThisToken(startOfNextSubstring, &tokens[3]);
-            list->rooms[list->numRooms].color = jsnparse_extractStringOfThisToken(startOfNextSubstring, &tokens[3]);
-            list->rooms[list->numRooms].online = jsnparse_extractStringOfThisToken(startOfNextSubstring, &tokens[3]);
+            list->rooms[list->numRooms].color = jsnparse_extractStringOfThisToken(startOfNextSubstring, &tokens[5]);
+            list->rooms[list->numRooms].online = jsnparse_extractStringOfThisToken(startOfNextSubstring, &tokens[7]);
 
             list->numRooms++;
         }
@@ -300,7 +298,6 @@ void jsnparse_freeChatRoomList(ChatRoomList *list)
     {
         free(list->rooms[index].id);
         free(list->rooms[index].name);
-        free(list->rooms[index].description);
         free(list->rooms[index].color);
         free(list->rooms[index].online);
     }

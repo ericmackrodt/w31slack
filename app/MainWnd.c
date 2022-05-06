@@ -101,13 +101,15 @@ void showToStatus(char *action, char *data)
 void updateChatRoomsUI()
 {
   int i;
-  showToStatus("we got here", "");
   SendMessage(GetDlgItem(hwnd, CHAT_ROOMS_BOX_ID), LB_RESETCONTENT, 0, 0);
 
   for (i = 0; i < chatRoomList.numRooms; i++)
   {
-    showToStatus(chatRoomList.rooms[i].name, "");
-    SendMessage(GetDlgItem(hwnd, CHAT_ROOMS_BOX_ID), LB_ADDSTRING, 0, (LPARAM)((LPSTR)chatRoomList.rooms[i].name));
+    char *str;
+    sprintf(str, "%s (%s Online)", chatRoomList.rooms[i].name, chatRoomList.rooms[i].online);
+
+    SendMessage(GetDlgItem(hwnd, CHAT_ROOMS_BOX_ID), LB_ADDSTRING, 0, (LPARAM)((LPSTR)str));
+    free(str);
   }
 }
 
@@ -293,7 +295,7 @@ HWND CreateMainWindow()
     InsertMenu(hSysMenu, 5, MF_BYPOSITION | MF_SEPARATOR, 0, NULL);
     InsertMenu(hSysMenu, 6, MF_BYPOSITION, ID_HELP_ABOUT, "About");
 
-    chatRoomsBox = CreateWindow("LISTBOX", "", WS_VSCROLL | WS_TABSTOP | WS_CHILD | WS_VISIBLE | LBS_NOTIFY | WS_VSCROLL | WS_HSCROLL, 20, 20, 100, 300, hwnd, CHAT_ROOMS_BOX_ID, g_hInstance, NULL);
+    chatRoomsBox = CreateWindow("LISTBOX", "", WS_VSCROLL | WS_TABSTOP | WS_CHILD | WS_VISIBLE | LBS_NOTIFY | WS_VSCROLL | WS_HSCROLL, 20, 20, 300, 300, hwnd, CHAT_ROOMS_BOX_ID, g_hInstance, NULL);
 
     nicknameTextField = CreateWindow("EDIT", "", WS_VISIBLE | WS_CHILD | WS_BORDER, 20, 325, 330, 25, hwnd, NICKNAME_TEXT_FIELD_ID, g_hInstance, NULL);
 

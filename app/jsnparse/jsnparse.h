@@ -6,7 +6,6 @@ typedef struct
 {
     char *id;
     char *name;
-    char *description;
     char *color;
     char *online;
 } ChatRoom;
